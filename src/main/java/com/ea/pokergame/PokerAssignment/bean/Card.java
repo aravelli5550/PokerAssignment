@@ -28,6 +28,10 @@ public class Card {
 		this.rank = rank;
 	}
 	
+	@Override 
+	public String toString() {
+	      return rank.toString()+""+suit.toString();
+	    }
 	
 
 	

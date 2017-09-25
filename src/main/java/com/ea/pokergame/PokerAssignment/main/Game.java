@@ -1,7 +1,10 @@
 package com.ea.pokergame.PokerAssignment.main;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.ea.pokergame.PokerAssignment.bean.Card;
 import com.ea.pokergame.PokerAssignment.bean.Player;
 import com.ea.pokergame.PokerAssignment.enums.RankingEnum;
 import com.ea.pokergame.PokerAssignment.util.DeckUtil;
@@ -20,6 +23,21 @@ public class Game {
 		
 		String RankValue = checkRank(playerMap);
 		
+		List<Card> p1Cards = p1.getCards();
+		List<Card> p2Cards = p2.getCards();
+		
+		String p1CardsList = p1Cards.stream().map(Card::toString)
+                .collect(Collectors.joining(", "));
+		
+		String p2CardsList = p2Cards.stream().map(Card::toString)
+                .collect(Collectors.joining(", "));
+		
+		
+		
+		System.out.println("Player one Cards: "+p1CardsList);
+		System.out.println("Player Two Cards: "+p2CardsList);
+
+
 		System.out.println(RankValue);
 
 			

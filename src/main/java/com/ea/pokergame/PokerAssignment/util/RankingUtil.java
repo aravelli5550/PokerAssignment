@@ -90,6 +90,8 @@ public static String isRoyalFlush(HashMap<String,Player> playerMap)
 		String result = null;
 		List<Integer> ordinals = DeckUtil.orderedOridinalRankList(playerMap);
 		int pairCount = 0;
+		int count =0;
+		
 		HashMap<Integer,Integer> pairs = new HashMap<Integer,Integer>();
 		
 		
@@ -100,13 +102,15 @@ public static String isRoyalFlush(HashMap<String,Player> playerMap)
 			
 		}
 		
-		for (HashMap.Entry<Integer, Integer> entry : pairs.entrySet()) {
-			if(entry.getValue() == 3 && entry.getValue() == 2)
+			if(pairs.containsValue(3) && pairs.containsValue(2))
 			{
 				result = RankingEnum.FULL_HOUSE.toString();
 				return result;
 			}
-		}
+		
+	
+		
+		
 
 		return result;
 	}
@@ -191,20 +195,18 @@ public static String isRoyalFlush(HashMap<String,Player> playerMap)
 			if(ordinals.get(j)-ordinals.get(j-1)==1||(ordinals.get(j)-ordinals.get(j-1)==1&&ordinals.get(ordinals.size()-1)-ordinals.get(0)==13))
 				{
 					counter++;
+					if(counter>=4)
+					{
+						result = RankingEnum.STRAIGHT.toString();
+						return result;
+					}
 				} else
 				{
 					counter = 0;
 				}
 		
 		}
-			
-		if(counter==5)
-		{
-			result = RankingEnum.STRAIGHT.toString();
-			return result;
-		}
-		
-		
+	
 		return result;
 	}
 	
@@ -236,20 +238,17 @@ public static String isRoyalFlush(HashMap<String,Player> playerMap)
 			if(ordinals.get(j-1)-ordinals.get(j)==0)
 				{
 					counter++;
+					if(counter>=4)
+					{
+						result = RankingEnum.FLUSH.toString();
+						return result;
+					}
 				} else{
 					counter = 0;
 				}
 		
 		}
 			
-		if(counter==5)
-		{
-			result = RankingEnum.FLUSH.toString();
-			return result;
-		}
-
-		
-		
 		return result;
 	}
 	
